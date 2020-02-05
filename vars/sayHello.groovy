@@ -39,7 +39,7 @@ def call(Map pipelineParams) {
 			writeFile file: 'exportOptions.plist', text: '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n<key>method</key>\n<string>same-as-archive</string>\n<key>teamID</key>\n<string>PP64RT7P8Z</string>\n<key>uploadSymbols</key>\n<true/>\n<key>uploadBitcode</key>\n<false/>\n<key>signingCertificate</key>\n<string>iPhone Developer: Garage DevOps (254ZC28T53)</string>\n<key>provisioningProfiles</key>\n<dict>\n<key>com.ibm.mobilefirst.finnair.travel.roster</key>\n<string>MF Finnair Travel Roster - Dev Prof</string>\n</dict>\n</dict>\n</plist>'
 			sh 'cat exportOptions.plist'
 		        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -exportArchive -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -exportPath $HOME/Documents/Build/${pipelineParams.schemeName} -exportOptionsPlist exportOptions.plist"
-			sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/$tag/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
+			sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
 			sh "mv $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.ipa $HOME/Documents/Build/$schemeName/$tag/${pipelineParams.schemeName}.ipa"
                }
             } 	
