@@ -29,7 +29,7 @@ def call(Map pipelineParams) {
             stage('Build archive') {
                 steps {
 		        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -scheme ${pipelineParams.schemeName} -workspace ${pipelineParams.schemeName}.xcworkspace -configuration ${pipelineParams.config} clean"
-	     	        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -scheme ${pipelineParams.schemeName} -workspace ${pipelineParams.schemeName}.xcworkspace -configuration ${pipelineParams.config} -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/$tag/${pipelineParams.schemeName}.xcarchive -derivedDataPath $HOME/Library/Developer/Xcode/DerivedData CODE_SIGN_IDENTITY='${pipelineParams.codeSigningIdentity}' PROVISIONING_PROFILE_SPECIFIER='${pipelineParams.provisioningProfileSpecifier}' RUN_SWIFT_LINT=FALSE archive"
+	     	        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -scheme ${pipelineParams.schemeName} -workspace ${pipelineParams.schemeName}.xcworkspace -configuration ${pipelineParams.config} -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -derivedDataPath $HOME/Library/Developer/Xcode/DerivedData CODE_SIGN_IDENTITY='${pipelineParams.codeSigningIdentity}' PROVISIONING_PROFILE_SPECIFIER='${pipelineParams.provisioningProfileSpecifier}' RUN_SWIFT_LINT=FALSE archive"
                }
             }    
         } 
