@@ -11,8 +11,8 @@ def call(Map pipelineParams) {
 
             stage('Pod install') {
                 steps {
-                       sh 'rm -rf Podfile.lock'
-	               sh 'rm -rf Pods'
+                       sh 'rm -f Podfile.lock'
+	               sh 'rm -rfv Pods'
 		       sh "rm -rf ${pipelineParams.schemeName}.xcworkspace"
 	               echo "Installing pods"
 		       sh "/usr/local/bin/pod _${pipelineParams.podVersion}_ install" 
