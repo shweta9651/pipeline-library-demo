@@ -35,7 +35,7 @@ def call(Map pipelineParams) {
 	    
 	   stage('Export IPA') {
                 steps {
-			sh "cat > exportOptions.plist << EOF
+			sh 'cat > exportOptions.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -57,7 +57,7 @@ def call(Map pipelineParams) {
 	</dict>
 </dict>  
 </plist>
-EOF"
+EOF'
 		        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -exportArchive -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -exportPath $HOME/Documents/Build/${pipelineParams.schemeName} -exportOptionsPlist exportOptions.plist"
 			sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/$tag/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
 			sh "mv $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.ipa $HOME/Documents/Build/$schemeName/$tag/${pipelineParams.schemeName}.ipa"
