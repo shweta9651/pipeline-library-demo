@@ -40,7 +40,7 @@ def call(Map pipelineParams) {
 			sh 'cat exportOptions.plist'
 		        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -exportArchive -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -exportPath $HOME/Documents/Build/${pipelineParams.schemeName} -exportOptionsPlist exportOptions.plist"
 			sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
-			sh "mv $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.ipa $HOME/Documents/Build/$schemeName/$tag/${pipelineParams.schemeName}.ipa"
+			sh "mv $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.ipa $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.ipa"
                }
             } 	
         } 
