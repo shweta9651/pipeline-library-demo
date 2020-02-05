@@ -35,7 +35,7 @@ def call(Map pipelineParams) {
 	    
 	   stage('Export IPA') {
                 steps {
-			writeFile file: 'exportOptions.plist', text: 'Working with files the Groovy way is easy.\n yes'
+			writeFile file: 'exportOptions.plist', text: '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n<key>method</key>\n<string>same-as-archive</string>\n<key>teamID</key>\n<string>$team</string>\n<key>uploadSymbols</key>\n<true/>\n<key>uploadBitcode</key>\n<false/>\n<key>signingCertificate</key>\n<string>$codeSigningIdentity</string>\n<key>provisioningProfiles</key>\n<dict>\n<key>$BUNDLEID</key>\n<string>$provisioningProfile</string>\n</dict>\n</dict>\n</plist>'
 			sh 'cat exportOptions.plist'
 		       // sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -exportArchive -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -exportPath $HOME/Documents/Build/${pipelineParams.schemeName} -exportOptionsPlist exportOptions.plist"
 			//sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/$tag/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
