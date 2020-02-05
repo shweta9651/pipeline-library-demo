@@ -36,6 +36,7 @@ def call(Map pipelineParams) {
 	   stage('Export IPA') {
                 steps {
 		        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -exportArchive -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -exportPath $HOME/Documents/Build/${pipelineParams.schemeName} -exportOptionsPlist exportOptions.plist"
+			sh "zip $HOME/Documents/Build/${pipelineParams.schemeName}/$tag/${pipelineParams.schemeName}.xcarchive.zip $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive"
 	     	        sh "/Applications/${pipelineParams.xcodeVersion}.app/Contents/Developer/usr/bin/xcrun xcodebuild -scheme ${pipelineParams.schemeName} -workspace ${pipelineParams.schemeName}.xcworkspace -configuration ${pipelineParams.config} -archivePath $HOME/Documents/Build/${pipelineParams.schemeName}/${pipelineParams.schemeName}.xcarchive -derivedDataPath $HOME/Library/Developer/Xcode/DerivedData CODE_SIGN_IDENTITY='${pipelineParams.codeSigningIdentity}' PROVISIONING_PROFILE_SPECIFIER='${pipelineParams.provisioningProfileSpecifier}' archive"
                }
             } 	
