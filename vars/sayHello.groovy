@@ -16,7 +16,6 @@ def call(Map pipelineParams) {
 			sh "rm -rf ${pipelineParams.schemeName}.xcworkspace"
 	                echo "Installing pods"
 			sh "/usr/local/bin/pod _${pipelineParams.podVersion}_ install" 
-	                sh 'archive'
                 }
             }
 
